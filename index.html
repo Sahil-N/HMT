@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Hangman Application</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<style>
+  /* all these styles should go in style.css */
+		.container {
+			text-align: center;
+		}
+		#game-wrapper {
+			border: 1px dotted #000;
+		}
+		#image-display{
+			border-right: 1px dotted #000;
+			border-bottom: none;
+		}
+		@media only screen and (max-width: 991.98px) { 
+			#image-display{
+			border-right: none;
+			border-bottom: 1px dotted #000;
+		}
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row" id="banner">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<!-- GAME BANNER -->
+				<h1>HANGMAN APPLICATION</h1>
+			</div>
+		</div>
+		<div class="row" id="out-container">
+		    <div class="col-xs-12 col-sm-12 col-md-3"></div>
+			<div class="col-xs-12 col-sm-12 col-md-6">
+				<div class="row" id="game-wrapper">
+					<div class="col-xs-12 col-sm-12 col-md-6 game" id="image-display">
+						<!-- left game display -->
+						<!-- images -->
+						<p>placeholder</p>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-6 game" id="game-data">
+						<!-- right game display -->
+						<!-- score, messages, word guessing, letter count, etc.-->
+						<p>placeholder</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-3"></div>
+		</div>
+	</div>
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
+</body>
+</html>
