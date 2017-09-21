@@ -17,3 +17,16 @@ document.addEventListener("keyup", function(event){
         alert("not a letter"); // this can say anything
     }
 });
+ 
+// word selector - Joseph
+//picks for a word from the array randomly
+ var animalPicker = wordBank[Math.floor(Math.random() * wordBank.length)];
+//picks a word from the first index of the array
+var animalPicker = animalArray[0]; 
+function wordSelector (animalPicker) {
+  //counts the letters in the selected word
+    var animalWordCount = animal.length
+    console.log(animalWordCount);
+  //returns variable so reused   
+    return animalWordCount
+};
