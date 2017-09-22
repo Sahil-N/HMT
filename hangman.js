@@ -28,7 +28,7 @@ function keyCompare(str1, str2) {
         displayRight(str2, dashes, str1)
        } else {
            guesses --;
-           lettersGuested.push(str2);
+           lettersGuessed.push(str2);
            document.querySelector("#letters-guessed").innerHTML = lettersGuessed;
            if(guesses === 0) {
                 alert("you lose");
