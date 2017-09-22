@@ -1,9 +1,15 @@
 var wordBank = ["cat", "dog", "bird", "fish"];
+var wins = 0;
+var losses = 0;
+
 var wordPicker = wordBank[Math.floor(Math.random() * wordBank.length)];
 var dashes = [];
 var lettersGuessed = [];
-var guesses = 13;
+var guesses = 10;
 var score = 0;
+underScoreString = [];
+
+
 var validationChecker = function(inputStr) {
     patt=/[A-Za-z]/g; // pattern to check against - g is global
     var isLetter = patt.test(inputStr); // check if input is a letter T/F
@@ -11,65 +17,102 @@ var validationChecker = function(inputStr) {
 }
 // alert users 
 function notLetter (str) {
-    alert( str + "Is not a letter. lease type letters only! (a-z)");
+    displayError( str + " Is not a letter. lease type letters only! (a-z)");
+}
+// 
+function createUnderscores() {
+    for(var i = 0; i< wordPicker.length; i++){
+        underScoreString.push("_");
+    }
 }
 
-// create dashes
-function displayDashes(str) {
-    var wordCount = str.length;
-    for(var i = 0; i< wordCount.length; i++){
-        dashes[i] = "_";
-        console.log(dashes);
-    }
+// show dashes for word
+function displayWord(currentStr) {
+    document.querySelector("#letters-dashes").innerHTML = currentStr.join(" ");
+}
+function displayGuesses() {
+    document.querySelector("#guesses-remaining").innerHTML = guesses;
+}
+function displayError(errorStr){
+    document.querySelector("#game-error").innerHTML = errorStr;
 }
 // compare user input to selected word
-function keyCompare(str1, str2) {
-    if(str1.indexOf(str2) !== -1) {
-        displayRight(str2, dashes, str1)
-       } else {
-           guesses --;
-           lettersGuessed.push(str2);
-           document.querySelector("#letters-guessed").innerHTML = lettersGuessed;
-           if(guesses === 0) {
-                alert("you lose");
-               gameReset();
-            }
-       }
+function keyCompare(userInput) {
+    if(lettersGuessed.indexOf(userInput) !== -1) {
+        // ignore already entered input
+        displayError("letter already guessed: " + userInput);
+        return;
+    }
+
+    if(wordPicker.indexOf(userInput) !== -1) {
+        updateGameState(userInput)
+    } else {
+       guesses--;
+       displayGuesses();
+       lettersGuessed.push(userInput);
+       document.querySelector("#letters-guessed").innerHTML = lettersGuessed.join(", ");
+       if(guesses === 0) {
+            gameLoss();
+        }
+   }
 }
-function displayRight(userInput, dashes, wordPicker) {
+// display correctly guessed letters
+function updateGameState(userInput) {
     var swapDashes = [];
-    for(i = 0; i < wordPicker.length; i++){
-        if(userInput === wordPicker[i]){
-            swapDashes[i] = userInput;
-        }else if (dashes[i] === wordPicker[i]){
-            swapDashes[i] = dashes[i];
-        } else {
-            swapDashes[i];
+    for(var c =0; c<wordPicker.length; c++){
+        if(wordPicker[c] == userInput){
+            underScoreString[c] = userInput;   
         }
-        console.log(swapDashes);
-        dashes = swapDashes;
-        // write to html
     }
-    if(dashes.indexOf("_") === -1){
-        score ++;
-        document.onKeyUp = function(event){
-            gameReset();
-        }
+    displayWord(underScoreString);
+    if(underScoreString.indexOf("_") === -1){
+        gameWin();
     }
 }
 
+function gameWin(){
+    wins++;
+    document.querySelector("#total-wins").innerHTML = wins;
+    gameReset();
+    displayError("you win! play again?");
+}
 
+function gameLoss(){
+    losses++;
+    document.querySelector("#total-losses").innerHTML = losses;
+    gameReset();
+    displayError("you lose");
+}
+
+function gameReset(){
+    wordPicker = wordBank[Math.floor(Math.random() * wordBank.length)];
+ 
+    lettersGuessed = [];
+    document.querySelector("#letters-guessed").innerHTML = lettersGuessed.join(", ");
+
+    guesses = 10;
+    underScoreString = [];
+ 
+    createUnderscores();
+    displayGuesses();
+    displayWord(underScoreString);
+}
 
 document.addEventListener("keyup", function(event){
     var userInput =  event.key.toLowerCase();// key press value
     console.log(userInput);   
     var isLetter = validationChecker(userInput);
+    // COMMENT OUT LATER:
+    //isLetter = true;
+    //
+    displayError(""); // clear error on keyup
     console.log(isLetter);
         // isLetter ? compareLetter(userInput) : notLetter(userInput);
+            if(userInput.length > 1) return; //ignore things like shift and backspace
+
             if (isLetter) {
                 // true
                 console.log(userInput);
-                displayDashes(userInput);
                 keyCompare(userInput);
             } else { 
                 // false
@@ -77,3 +120,6 @@ document.addEventListener("keyup", function(event){
                 notLetter(userInput);
             }
 });
+
+console.log(wordPicker)
+gameReset();
