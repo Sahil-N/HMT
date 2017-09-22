@@ -12,7 +12,6 @@ document.addEventListener("keyup", function(event){
     console.log(userInput);   
     var isLetter = validationChecker(userInput);
     console.log(isLetter);
-        // isLetter ? compareLetter(userInput) : notLetter(userInput);
             if (isLetter) {
                 // true
                 console.log(userInput);
