@@ -1,11 +1,64 @@
 var wordBank = ["cat", "dog", "bird", "fish"];
 var wordPicker = wordBank[math.floor(math.random() * wordBank.length)];
 var dashes = [];
+var lettersGuessed = [];
+var guesses = 13;
+var score = 0;
 var validationChecker = function(inputStr) {
     patt=/[A-Za-z]/g; // pattern to check against - g is global
     var isLetter = patt.test(inputStr); // check if input is a letter T/F
     return isLetter
 }
+// alert users 
+function notLetter (str) {
+    alert( str + "Is not a letter. lease type letters only! (a-z)");
+}
+
+// create dashes
+function displayDashes(str) {
+    var wordCount = str.length;
+    for(var i = 0; i< wordCount.length; i++){
+        dashes[i] = "_";
+        console.log(dashes);
+    }
+}
+// compare user input to selected word
+function keyCompare(str1, str2) {
+    if(str1.getIndexOf(str2) !== -1) {
+        displayRight(str2, dashes, str1)
+       } else {
+           guess --;
+           lettersGuested.push(str2);
+           document.querySelector("#letters-guessed").innerHTML = lettersGuessed;
+           if(guess === 0) {
+                alert("you lose");
+               gameReset();
+            }
+       }
+}
+function displayRight(userInput, dashes, wordPicker) {
+    var swapDashes = [];
+    for(i = 0; i < wordPicker.length; i++){
+        if(userInput === wordPicker[i]){
+            swapDashes[i] = userInput;
+        }else if (dashes[i] === wordPicker[i]){
+            swapDashes[i] = dashes[i];
+        } else {
+            swapDashes[i];
+        }
+        console.log(swapDashes);
+        dashes = swapDashes;
+        // write to html
+    }
+    if(dashes.getIndexOf("_") === -1){
+        score ++;
+        document.onKeyUp = function(event){
+            gameReset();
+        }
+    }
+}
+
+
 
 document.addEventListener("keyup", function(event){
     var userInput =  event.key.toLowerCase();// key press value
@@ -16,23 +69,11 @@ document.addEventListener("keyup", function(event){
             if (isLetter) {
                 // true
                 console.log(userInput);
-                doSomething(userInput);
+                display(userInput);
+                keyCompare(userInput);
             } else { 
                 // false
                 console.log(isLetter);
                 notLetter(userInput);
             }
 });
-
-// alert users 
-function notLetter (str) {
-    alert( str + "Is not a letter. lease type letters only! (a-z)");
-}
-
-function displayDashes(str) {
-    var wordCount = str.length;
-    for(var i = 0; i< wordCount.length; i++){
-        dashes[i] = "_";
-        console.log(dashes);
-    }
-}
