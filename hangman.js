@@ -1,3 +1,6 @@
+var wordBank = ["cat", "dog", "bird", "fish"];
+var wordPicker = wordBank[math.floor(math.random() * wordBank.length)];
+var dashes = [];
 var validationChecker = function(inputStr) {
     patt=/[A-Za-z]/g; // pattern to check against - g is global
     var isLetter = patt.test(inputStr); // check if input is a letter T/F
@@ -26,3 +29,10 @@ function notLetter (str) {
     alert( str + "Is not a letter. lease type letters only! (a-z)");
 }
 
+function displayDashes(str) {
+    var wordCount = str.length;
+    for(var i = 0; i< wordCount.length; i++){
+        dashes[i] = "_";
+        console.log(dashes);
+    }
+}
