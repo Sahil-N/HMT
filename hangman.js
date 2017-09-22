@@ -69,7 +69,7 @@ document.addEventListener("keyup", function(event){
             if (isLetter) {
                 // true
                 console.log(userInput);
-                display(userInput);
+                displayDashes(userInput);
                 keyCompare(userInput);
             } else { 
                 // false
