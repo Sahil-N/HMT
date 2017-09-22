@@ -1,5 +1,5 @@
 var wordBank = ["cat", "dog", "bird", "fish"];
-var wordPicker = wordBank[math.floor(math.random() * wordBank.length)];
+var wordPicker = wordBank[Math.floor(Math.random() * wordBank.length)];
 var dashes = [];
 var lettersGuessed = [];
 var guesses = 13;
