@@ -24,7 +24,7 @@ function displayDashes(str) {
 }
 // compare user input to selected word
 function keyCompare(str1, str2) {
-    if(str1.getIndexOf(str2) !== -1) {
+    if(str1.indexOf(str2) !== -1) {
         displayRight(str2, dashes, str1)
        } else {
            guess --;
@@ -50,7 +50,7 @@ function displayRight(userInput, dashes, wordPicker) {
         dashes = swapDashes;
         // write to html
     }
-    if(dashes.getIndexOf("_") === -1){
+    if(dashes.indexOf("_") === -1){
         score ++;
         document.onKeyUp = function(event){
             gameReset();
