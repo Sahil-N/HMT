@@ -27,10 +27,10 @@ function keyCompare(str1, str2) {
     if(str1.indexOf(str2) !== -1) {
         displayRight(str2, dashes, str1)
        } else {
-           guess --;
+           guesses --;
            lettersGuested.push(str2);
            document.querySelector("#letters-guessed").innerHTML = lettersGuessed;
-           if(guess === 0) {
+           if(guesses === 0) {
                 alert("you lose");
                gameReset();
             }
