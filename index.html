@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Hangman Application</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
 	<style>
   /* all these styles should go in style.css */
 		.container {
@@ -37,24 +37,43 @@
 		<div class="row" id="messages">
 			<div class="col-xs-12 col-sm-12 col-md-12">
 			<!-- sub header; winer, loser, try again, error, game answer -->
-				<h2>You win /lose (placeholder)</h2>
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<span>Wins: </span><span id="total-wins">0</span>
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<span>Losses: </span><span id="total-losses">0</span>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="row" id="out-container">
 		    <div class="col-xs-12 col-sm-12 col-md-3"></div>
 			<div class="col-xs-12 col-sm-12 col-md-6">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12" id="game-error"></div>
+				</div>
 				<div class="row" id="game-wrapper">
 					<div class="col-xs-12 col-sm-12 col-md-6 game" id="image-display">
 						<!-- left game display -->
 						<!-- images -->
-						<p>L placeholder</p>
+						<p></p>
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-6 game" id="game-data">
 						<!-- right game display -->
 						<!-- score, messages, word guessing, letter count, etc.-->
-						<div id="letters-dashes"></div>
-						<div id="letters-guessed"></div>
-						<div id="total-guesses"></div>
+						<div>
+							<div>Guess the word:</div>
+							<div id="letters-dashes"></div>
+						</div>
+						<div>
+							<div>Letters guessed:</div>
+							<div id="letters-guessed"></div>
+						</div>
+						<div>
+							<div>Guesses remaining:</div>
+							<div id="guesses-remaining"></div>
+						</div>
 					</div>
 				</div>
 			</div>
